@@ -3,6 +3,7 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-nativ
 import { ScrollView } from "react-native"
 import { useDispatch } from "react-redux";
 import { onLogin } from "../store/user/user.action";
+import { useNavigation } from "@react-navigation/native";
 
 
 export const Login = ({ navigation }) => {
@@ -12,6 +13,7 @@ export const Login = ({ navigation }) => {
             password: 'admin',
         }
     })
+    const navigator = useNavigation()
     const dispatch = useDispatch()
 
     const handleForm = (value, name) => {
@@ -22,7 +24,7 @@ export const Login = ({ navigation }) => {
     const onSubmit = async (e) => {
         e.preventDefault()
         let user = await dispatch(onLogin(creds))
-        console.log(user)
+        navigator.navigate('Products')
 
     }
     return (
@@ -58,11 +60,12 @@ export const Login = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     scrollview: {
-        marginTop: '50%'
+        // marginTop: '50%',
+        backgroundColor: '#343a40',
+
     },
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -72,23 +75,31 @@ const styles = StyleSheet.create({
     },
     textInput: {
         borderWidth: 1,
-        borderColor: '#ccc',
+        borderColor: '#FFFFFF',
+        backgroundColor: '#FFFFFF',
         borderRadius: 5,
         padding: 10,
+        marginTop: 10,
         minWidth: '30%'
     },
     whiteWrapperButton: {
         alignItems: 'center',
-        minWidth: '30%',
         marginTop: 10,
         padding: 12,
         shadowColor: 'rgba(0, 0, 0, 0.4)',
         shadowOffset: { width: -2, height: 4 },
         shadowRadius: 3,
         borderRadius: 60,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#6c757d',
         elevation: 4,
         borderColor: 'rgba(0, 0, 0, 0.2)',
         borderWidth: 1,
+        minWidth: '30%',
+        justifyContent: 'center',
+        alignSelf: 'center'
+
     },
+    whiteButton:{
+        color:'#FFFFFF'
+    }
 });
