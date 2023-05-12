@@ -18,7 +18,6 @@ export const Products = () => {
     }, [products, products?.length])
 
     useEffect(() => {
-        console.log(products)
         products !== null && setFiltered(products?.filter((item) => item?.name?.toLowerCase().includes(search_query.toLowerCase())));
     }, [search_query]);
 

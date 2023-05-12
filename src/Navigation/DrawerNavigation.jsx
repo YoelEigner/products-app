@@ -3,7 +3,7 @@ import { Products } from '../Components/Products'
 import { Login } from '../Components/Login';
 import { useSelector } from 'react-redux';
 import { Details } from '../Components/Details';
-import {NewProduct} from '../Components/NewProduct';
+import { NewProduct } from '../Components/NewProduct';
 
 
 const Stack = createNativeStackNavigator();
