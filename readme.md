@@ -39,7 +39,7 @@ eas build
 ```
 Or
 ```bash
-eas build
+expo start
 ```
 This will start the Expo development server and open the app in the Expo client. You can then use the Expo client to preview the app on your device or emulator.
 
