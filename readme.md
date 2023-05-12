@@ -4,9 +4,7 @@ This is a React Native app for managing products.
 ## Getting Started
 ### Prerequisites
 1. npm (version 7 or higher)
-2. Android Studio (for building Android app)
-3. Xcode (for building iOS app)
-4. eas-cli (for building EXPO app)
+2. eas-cli (for building EXPO app)
 
 ### Installing Dependencies
 Run the following command to install dependencies:
