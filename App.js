@@ -3,13 +3,17 @@ import { StyleSheet, Text, View } from 'react-native';
 import { store } from './src/store/root-reducer'
 import { Provider } from 'react-redux'
 import { Products } from './src/Components/Products';
+import { NavigatorComp } from './src/Navigation/DrawerNavigation';
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Provider store={store}>
-        <Products />
-        <StatusBar style="auto" />
+        <NavigationContainer>
+          <NavigatorComp />
+          <StatusBar style="auto" />
+        </NavigationContainer>
       </Provider>
     </View>
   );
@@ -18,8 +22,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#343a40',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });

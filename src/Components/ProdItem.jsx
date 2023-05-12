@@ -1,97 +1,29 @@
 
 import React, { useState } from "react";
-import { View, Button, StyleSheet, TouchableOpacity, Text } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
-import { DeleteProduct, UpdateProduct } from "../store/user/user.action";
+import { View, StyleSheet } from "react-native";
 import { ItemRow } from "./ItemRow";
+import { useNavigation } from "@react-navigation/native";
 
 export const ProdItem = ({ product, editItem }) => {
-    const [editable, setEditable] = useState(false);
-    const dispatch = useDispatch();
-    const { products, token } = useSelector((state) => state);
+    const navigator = useNavigation()
 
-    const handleEdit = (event, id) => {
-        let name = event.currentTarget.title;
-        let value = event.target.value;
-        editItem(name, value, id);
+    const handleEdit = (value, id, title) => {
+        editItem(value, id, title);
     };
-
-    const onDelete = async (item) => {
-        await dispatch(DeleteProduct(products, item.ID, token));
-        setEditable(false);
-    };
-
-    const onEdit = async () => {
-        setEditable(!editable);
-        // if (editable) {
-        //     await dispatch(UpdateProduct(products, product, token));
-        // }
-    };
+    const handleNavigate = () => {
+        navigator.navigate('Details', { state: product })
+    }
 
     return (
         <View style={styles.container}>
             <View style={styles.View}>
-                <View
-                    title={`ID: ${product?.ID}`}
-                    titleStyle={[
-                        styles.ViewHeader,
-                        product?.status && styles.strikethrough,
-                    ]}
-                />
-                <View>
-                    <View style={styles.productBody}>
-                        <ItemRow
-                            editable={editable}
-                            item={product?.name}
-                            title={"name"}
-                            handleEdit={(e) => {
-                                handleEdit(e, product?.ID);
-                            }}
-                        />
-                        <ItemRow
-                            editable={editable}
-                            item={product?.description}
-                            title={"description"}
-                            handleEdit={(e) => {
-                                handleEdit(e, product?.ID);
-                            }}
-                        />
-                        <ItemRow
-                            editable={editable}
-                            item={product?.price}
-                            title={"price"}
-                            handleEdit={(e) => {
-                                handleEdit(e, product?.ID);
-                            }}
-                        />
-                        <ItemRow
-                            editable={editable}
-                            item={product?.quantity}
-                            title={"quantity"}
-                            handleEdit={(e) => {
-                                handleEdit(e, product?.ID);
-                            }}
-                        />
-                    </View>
-                </View>
-                <View style={styles.actions}>
-                    {editable && (
-                        <Button
-                        title="Delete"
-                            onPress={() => onDelete(product)}
-                            style={[styles.button, styles.deleteButton]}
-                        >
-                            Delete
-                        </Button>
-                    )}
-                    <TouchableOpacity
-                        title="test"
-                        onPress={() => onEdit()}
-                        disabled={product?.status}
-                        style={[styles.button, styles.addButton]}
-                    >
-                        <Text>{!editable ? "Edit" : "Update"}</Text>
-                    </TouchableOpacity>
+                <View style={styles.productBody} onTouchEnd={() => { handleNavigate() }}>
+                    <ItemRow
+                        editable={false}
+                        item={product?.name}
+                        title={"name"}
+                        handleEdit={(value, item, title) => { handleEdit(value, product?.ID, title); }}
+                    />
                 </View>
             </View>
         </View>
@@ -99,9 +31,11 @@ export const ProdItem = ({ product, editItem }) => {
 };
 
 const styles = StyleSheet.create({
+    buttonText: {
+        fontSize: 20
+    },
     container: {
         marginVertical: 10,
-        marginHorizontal: 20,
     },
     View: {
         borderRadius: 20,
@@ -117,13 +51,38 @@ const styles = StyleSheet.create({
         textDecorationLine: "line-through",
     },
     productBody: {
-        display: "flex",
+        // display: "flex",
         justifyContent: "space-between",
     },
     actions: {
         display: "flex",
         justifyContent: 'center'
+    },
+    whiteWrapperButton: {
+        alignItems: 'center',
+        marginTop: 10,
+        padding: 12,
+        shadowColor: 'rgba(0, 0, 0, 0.4)',
+        shadowOffset: { width: -2, height: 4 },
+        shadowRadius: 3,
+        borderRadius: 60,
+        backgroundColor: '#6c757d',
+        elevation: 4,
+        borderColor: 'rgba(0, 0, 0, 0.2)',
+        borderWidth: 1,
 
-
-    }
+    },
+    redWrapperButton: {
+        alignItems: 'center',
+        marginTop: 10,
+        padding: 12,
+        shadowColor: 'rgba(0, 0, 0, 0.4)',
+        shadowOffset: { width: -2, height: 4 },
+        shadowRadius: 3,
+        borderRadius: 60,
+        backgroundColor: '#BD1E1E',
+        elevation: 4,
+        borderColor: 'rgba(0, 0, 0, 0.2)',
+        borderWidth: 1,
+    },
 })  
