@@ -30,6 +30,7 @@ npx react-native run-android
 
 ### Building IOS App  
 * not tested
+* this project is missing IOS build files, to generate the neccesary files run `npx expo run:ios`
 1. clone the repository by running the following command:
 ```bash
 git clone https://github.com/YoelEigner/products-app.git
