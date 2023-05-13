@@ -1,3 +1,9 @@
+/**
+Renders a screen for adding a new product, with input fields for name,
+description, price, and quantity. Upon submission, dispatches an action to
+save the new product to Redux and the database.
+@returns {JSX.Element} The rendered screen.
+ */
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, ScrollView } from 'react-native';

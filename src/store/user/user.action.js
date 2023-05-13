@@ -6,11 +6,18 @@ import { NewProductDAL } from "../../DAL/NewProduct"
 import { UpdateProducts } from "../../DAL/UpdateProducts"
 
 
+/**
+ * Logs in a user and dispatches a "SET_USER" action with the user data.
+ * @param {Object} credentials - The user's login credentials.
+ * @param {string} credentials.username - The user's username.
+ * @param {string} credentials.password - The user's password.
+ */
 export function onLogin(credentials) {
   return async (dispatch) => {
     try {
-      const user = await LoginDAL(credentials)
-      if (user) dispatch({ type: 'SET_USER', user })
+      const response = await LoginDAL(credentials)
+      const user = response.data
+      if (response.status === 200) dispatch({ type: 'SET_USER', user })
       return user
     } catch (err) {
       console.log('Cannot login', err)
@@ -18,6 +25,10 @@ export function onLogin(credentials) {
   }
 }
 
+/**
+ * Retrieves products from the server and dispatches a "SET_PRODUCTS" action with the products data.
+ * @param {string} token - The user's authentication token.
+ */
 export const onGetProducts = (token) => {
   return async (dispatch) => {
     try {
@@ -29,6 +40,17 @@ export const onGetProducts = (token) => {
   }
 }
 
+/**
+ * Updates a product on the server and dispatches an "UPDATE_PRODUCT" action with the updated product data.
+ * @param {Array<Object>} products - The list of products.
+ * @param {Object} updated - The updated product data formatted for the API.
+ * @param {string} updated.ID - The ID of the updated product.
+ * @param {string} updated.name - The updated name of the product.
+ * @param {string} updated.description - The updated description of the product.
+ * @param {number} updated.price - The updated price of the product.
+ * @param {number} updated.quantity - The updated quantity of the product.
+ * @param {string} token - The user's authentication token.
+ */
 export const UpdateProduct = (products, updated, token) => {
   return async (dispatch) => {
     let obj = { "ID": updated.ID, "name": updated.name, "description": updated.description, "price": updated.price, "quantity": updated.quantity }
@@ -49,6 +71,12 @@ export const UpdateProduct = (products, updated, token) => {
   }
 }
 
+/**
+ * Deletes a product from the server and dispatches a "DELETE_PRODUCT" action with the updated list of products data.
+ * @param {Array<Object>} products - The list of products.
+ * @param {string} id - The ID of the product to delete.
+ * @param {string} token - The user's authentication token.
+ */
 export const DeleteProduct = (products, id, token) => {
   return async (dispatch) => {
     const response = await DeleteProductDAL(token, id)
@@ -69,6 +97,11 @@ export const DeleteProduct = (products, id, token) => {
   }
 }
 
+/**
+ * Save a new product.
+ * @param {Object} data - The new product data.
+ * @param {string} token - The authentication token.
+ */
 export const SaveNewProduct = (data, token) => {
   return async (dispatch) => {
     try {
@@ -88,6 +121,12 @@ export const SaveNewProduct = (data, token) => {
   }
 }
 
+/**
+ * Update a product's favorite status.
+ * @param {Array} products - The array of products.
+ * @param {Object} data - The product ID and favorite status.
+ * @param {string} token - The authentication token.
+ */
 export const FavorateProduct = (products, data, token) => {
   return async (dispatch) => {
     let obj = { "ID": data.ID, "favorate": data.favorate }
@@ -108,12 +147,16 @@ export const FavorateProduct = (products, data, token) => {
   }
 }
 
+/**
+ * Set the search query.
+ * @param {string} search_query - The search query.
+ */
 export const onSerachQuery = (search_query) => {
   return async (dispatch) => {
-      try {
-          dispatch({ type: 'SET_SEARCH_QUERY', search_query })
-      } catch (err) {
-          console.log('Search: err in searching', err)
-      }
+    try {
+      dispatch({ type: 'SET_SEARCH_QUERY', search_query })
+    } catch (err) {
+      console.log('Search: err in searching', err)
+    }
   }
 }

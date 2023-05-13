@@ -1,3 +1,10 @@
+/**
+Displays the details of a product and allows for editing or deleting.
+@param {object} props - The properties of the component.
+@param {object} props.route.params.state - The product to be displayed.
+ * @returns {JSX.Element} - The Details component.
+ */
+
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { ItemRow } from "./ItemRow";
 import { useEffect, useState } from "react";
@@ -49,6 +56,7 @@ export const Details = (props) => {
             >
                 <Icon name="star" size={30} color={product?.favorate ? '#F7D488' : '#FFFFFF'} />
             </TouchableOpacity>
+
             <View style={styles.View}>
                 <ItemRow
                     editable={editable}
@@ -110,8 +118,7 @@ const styles = StyleSheet.create({
     },
     View: {
         borderRadius: 20,
-        height: '100%',
-        marginTop: 40
+        marginTop: '20%'
     },
     actions: {
         display: "flex",
@@ -158,9 +165,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(0, 0, 0, 0.2)',
         borderWidth: 1,
         position: 'absolute',
-        position: 'absolute',
         top: 10,
         right: 10,
-        zIndex: 1,
     },
 })

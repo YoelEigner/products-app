@@ -1,6 +1,14 @@
+/**
+Renders a row in a list for an item with a label and editable text input or non-editable text.
+@param {Object} props - The component props.
+@param {boolean} props.editable - Whether the item is editable or not.
+@param {string|number} props.item - The item to be displayed in the row.
+@param {string} props.title - The label to be displayed for the item.
+@param {Function} props.handleEdit - The function to be called when the text input is edited.
+@returns {JSX.Element} A row component with a label and editable/non-editable text.
+ */
 import React from 'react';
-// import { Card, InputGroup } from 'react-native-elements';
-import { Dimensions, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 export const ItemRow = ({ editable, item, title, handleEdit }) => {
     return (
@@ -31,8 +39,8 @@ const styles = StyleSheet.create({
         flex: 1,
         marginRight: 10,
         marginLeft: 30,
-        fontSize:20,
-        color:'#FFFFFF'
+        fontSize: 20,
+        color: '#FFFFFF'
     },
     input: {
         flex: 1,
@@ -41,14 +49,14 @@ const styles = StyleSheet.create({
         padding: 10,
         // width: '100%',
         marginRight: 10,
-        fontSize:20
-        
+        fontSize: 20
+
 
     },
     text: {
         flex: 1,
-        fontSize:20,
-        color:'#FFFFFF',
+        fontSize: 20,
+        color: '#FFFFFF',
 
     }
 });

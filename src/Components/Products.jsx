@@ -1,3 +1,8 @@
+/**
+Renders a list of products with search and edit functionalities.
+@returns {JSX.Element} The rendered Products component.
+ */
+
 import { useEffect, useState } from "react";
 import { Dimensions, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { Login } from "./Login";

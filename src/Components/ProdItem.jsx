@@ -1,3 +1,9 @@
+/**
+Renders a product item with name and details.
+@param {Object} props.product - The product to render.
+@param {Function} props.editItem - The function to handle editing of the item.
+@returns {JSX.Element} A React component for the product item.
+ */
 
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
