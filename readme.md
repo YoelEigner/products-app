@@ -1,4 +1,3 @@
-
 # Products App
 This is a React Native app for managing products.
 
