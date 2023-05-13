@@ -1,3 +1,8 @@
+/**
+Renders a login form component.
+@returns {JSX.Element} The login form.
+ */
+
 import { useState } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native"
@@ -6,7 +11,7 @@ import { onLogin } from "../store/user/user.action";
 import { useNavigation } from "@react-navigation/native";
 
 
-export const Login = ({ navigation }) => {
+export const Login = () => {
     const [creds, setCreds] = useState(() => {
         return {
             username: 'admin',
@@ -99,7 +104,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
 
     },
-    whiteButton:{
-        color:'#FFFFFF'
+    whiteButton: {
+        color: '#FFFFFF'
     }
 });
